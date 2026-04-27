@@ -1,10 +1,19 @@
+body{
+    padding: 10px;
+}
+.conteiner{
+    display: flex;
+     gap: 20px
+}
 .tarefa {
     border: 1px solid #222;
     border-radius: 10px;
     overflow: hidden;
     width: 25%;
     padding: 10px;
-    background-color: antiquewhite;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(167, 167, 167);
 }
 .tarefa>a{
     cursor: pointer;

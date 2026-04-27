@@ -41,18 +41,30 @@
      color: transparent;
      background-clip: text;
  }
- .code{
-    display: flex;
-    color: white;
-    list-style: none;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
-    background-color: aqua;
-    width: 30vw;
-    height: 25vh;
-    border-radius: 15px;
+
+ .code {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 60px;
+     background-color: #131313;
+     padding: 40px;
+     border-radius: 15px;
+     width: 35vw;
+     height: 25vh;
+     border-top: 2px solid rgb(63, 63, 63);
  }
- .code>li{
-    font-size: 60px;
+
+ .code li {
+     list-style: none;
  }
+
+ .code li span {
+     display: inline-block;
+     font-size: 30px;
+     color: white;
+     filter: blur(10px);
+     opacity: 0.5;
+     transition: all 0.2s ease;
+ }
+

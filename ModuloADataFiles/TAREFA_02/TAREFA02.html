@@ -33,6 +33,45 @@
             </li>
         </ul>
     </section>
+
+    <script>
+        const spans = document.querySelectorAll('.code span');
+
+        document.addEventListener('mousemove', (e) => {
+            spans.forEach(span => {
+                // Pega a posição do centro de cada span
+                const rect = span.getBoundingClientRect();
+                const spanX = rect.left + rect.width / 2;
+                const spanY = rect.top + rect.height / 2;
+
+                // Calcula a distância entre o mouse e o span usando Pitágoras
+                const distX = e.clientX - spanX;
+                const distY = e.clientY - spanY;
+                const distance = Math.sqrt(distX * distX + distY * distY);
+
+                // Define um raio de influência (ex: 200 pixels)
+                const radius = 400;
+
+                if (distance < radius) {
+                    // Calcula o nível de proximidade (0 a 1)
+                    const proximity = 1 - (distance / radius); // 1 é muito perto, 0 é longe
+
+                    // Aplica os efeitos baseados na proximidade
+                    const scale = 1 + (proximity * 1.5); // Aumenta até 2.5x
+                    const blur = 10 - (proximity * 10);  // Diminui o blur até 0
+                    const opacity = 0.5 + (proximity * 0.5); // Aumenta opacidade até 1
+
+                    span.style.transform = `scale(${scale})`;
+                    span.style.filter = `blur(${blur}px)`;
+                    span.style.opacity = opacity;
+                } else {
+                    // Reset se estiver fora do raio
+                    span.style.transform = `scale(1)`;
+                    span.style.filter = `blur(10px)`;
+                    span.style.opacity = 0.5;
+                }
+            });
+        });</script>
 </body>
 
 </html>

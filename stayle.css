@@ -1,0 +1,18 @@
+.tarefa {
+    border: 1px solid #222;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 25%;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+.tarefa>a{
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(63, 63, 63);
+    font-size: 20px;
+}
+.tarefa>a>img {
+    width: 400px;
+    border-radius: 10px;
+}

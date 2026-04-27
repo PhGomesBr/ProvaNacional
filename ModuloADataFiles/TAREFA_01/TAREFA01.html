@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<style>
+    body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    #canvas {
+        display: block;
+        border: 4px solid #333;
+        border-radius: 10px;
+        background-color: #ffff;
+        cursor: crosshair;
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    #colorPicker {
+        border: none;
+        height: 35px;
+        width: 40px;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .btn {
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 30px;
+        width: 70px;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    .btn-clear {
+        background-color: red;
+    }
+
+    .btn-clear:hover {
+        background-color: rgb(128, 12, 12);
+        transform: scale(1.1);
+    }
+
+    .btn-export {
+        background-color: #00ca00;
+        width: 100px;
+    }
+
+    .btn-export:hover {
+        background-color: #0a790a;
+        transform: scale(1.1);
+    }
+</style>
+
+<body>
+    <h1> Canvas de desenho</h1>
+
+    <canvas id="canvas" width="800" height="450"> </canvas>
+
+    <div class="controls">
+        <label for="colorPicker"> Cor do pincel: </label>
+        <input type="color" id="colorPicker" value="#000000">
+        <button class="btn btn-clear" id="btnLimpar">Limpar</button>
+        <button class="btn btn-export" id="btnExportar">Exportar PNG</button>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const btnLimpar = document.getElementById('btnLimpar');
+        const btnExportar = document.getElementById('btnExportar');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Configurações iniciais do contexto do canvas para um desenho mais suave
+        ctx.lineWidth = 5; // Espessura da linha
+        ctx.lineJoin = 'round'; // Estilo da junção das linhas
+        ctx.lineCap = 'round'; // Estilo da ponta da linha
+
+        canvas.addEventListener('mousedown', startDrawing); //clicou
+        canvas.addEventListener('mousemove', draw); ///moveu
+        canvas.addEventListener('mouseup', stopDrawing); //solto
+
+        colorPicker.addEventListener('change', (e) => {
+            ctx.strokeStyle = e.target.value;
+        })
+
+        function startDrawing(e) {
+            isDrawing = true;
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+        }
+
+        function stopDrawing() {
+            isDrawing = false
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+
+            ctx.beginPath(); // começa um novo traço
+            ctx.moveTo(lastX, lastY); //vai ate onde estava
+            ctx.lineTo(e.offsetX, e.offsetY); // traça até onde o mouse esta agpra
+            ctx.stroke(); // desenha na tela
+
+
+            // atualiza a posição pra próxima vez
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+        }
+
+        btnLimpar.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            //APAGA TD: começa em (0,0) e vai ate o fim do canvcas
+        });
+        btnExportar.addEventListener('click', () => {
+            const dataURL = canvas.toDataURL('image/png'); // Obtém a imagem do canvas como URL de dados
+            const a = document.createElement('a'); // Cria um elemento <a> temporário
+            a.href = dataURL; // Define o href como a URL de dados da imagem
+            a.download = 'desenho.png'; // Define o nome do arquivo para download
+            document.body.appendChild(a); // Adiciona o elemento <a> ao corpo do documento
+            a.click(); // Simula um clique no link para iniciar o download
+            document.body.removeChild(a); // Remove o elemento <a> temporário
+        });
+
+
+    </script>
+</body>
+
+</html>

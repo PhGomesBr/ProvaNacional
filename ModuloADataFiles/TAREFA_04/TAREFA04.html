@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulário de Inscrição</title>
+</head>
+<body>
+
+<div class="card">
+    <h1>Inscrição</h1>
+
+    <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Seu nome completo">
+        <span class="erro" id="erroNome"></span>
+    </div>
+
+    <div class="campo">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="seu@email.com">
+        <span class="erro" id="erroEmail"></span>
+    </div>
+
+    <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Mínimo 8 caracteres">
+        <span class="erro" id="erroSenha"></span>
+    </div>
+
+    <button id="btnEnviar" disabled>Enviar</button>
+</div>
+
+<script>
+    const nome   = document.getElementById('nome');
+    const email  = document.getElementById('email');
+    const senha  = document.getElementById('senha');
+    const btn    = document.getElementById('btnEnviar');
+
+    const erroNome  = document.getElementById('erroNome');
+    const erroEmail = document.getElementById('erroEmail');
+    const erroSenha = document.getElementById('erroSenha');
+
+    // Expressão regular do email
+    // deve ter: texto @ texto . texto
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Expressão regular da senha
+    // mínimo 8 chars + pelo menos 1 letra (maiúscula ou minúscula) + pelo menos 1 caractere especial
+    const regexSenha = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+
+    function validarNome() {
+        if (nome.value.trim() === '') {
+            erroNome.textContent = 'O nome não pode ser vazio.';
+            nome.className = 'invalido';
+            return false;
+        }
+        erroNome.textContent = '';
+        nome.className = 'valido';
+        return true;
+    }
+
+    function validarEmail() {
+        if (email.value.trim() === '') {
+            erroEmail.textContent = 'O email não pode ser vazio.';
+            email.className = 'invalido';
+            return false;
+        }
+        if (!regexEmail.test(email.value)) {
+            erroEmail.textContent = 'Email inválido. Use o formato: nome@dominio.com';
+            email.className = 'invalido';
+            return false;
+        }
+        erroEmail.textContent = '';
+        email.className = 'valido';
+        return true;
+    }
+
+    function validarSenha() {
+        if (senha.value.length < 8) {
+            erroSenha.textContent = 'A senha deve ter no mínimo 8 caracteres.';
+            senha.className = 'invalido';
+            return false;
+        }
+        if (!regexSenha.test(senha.value)) {
+            erroSenha.textContent = 'A senha precisa ter pelo menos uma letra e um caractere especial (!@#$...).';
+            senha.className = 'invalido';
+            return false;
+        }
+        erroSenha.textContent = '';
+        senha.className = 'valido';
+        return true;
+    }
+
+    function atualizarBotao() {
+        const tudo = validarNome() && validarEmail() && validarSenha();
+        btn.disabled = !tudo;
+    }
+
+    // Valida em tempo real conforme o usuário digita
+    nome.addEventListener('input', atualizarBotao);
+    email.addEventListener('input', atualizarBotao);
+    senha.addEventListener('input', atualizarBotao);
+</script>
+
+</body>
+</html>

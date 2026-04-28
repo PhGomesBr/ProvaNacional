@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    align-items: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    margin-top: 20px;
+}
+p{
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+#gameBoard{
+    padding: 10px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
+}
+.card{
+    background-color: #0c8ac8;
+    border-radius: 10px;
+    width: 14vw;
+    height: 16vh;
+    cursor: pointer;
+    position: relative;
+    transition: .3s;
+}
+
+.card.flipped {
+    display: flex;
+    transform: rotateY(180deg);
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    font-size: 35px;
+}
+
+#modal{
+    border: 2px solid rgb(20, 206, 206);
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: -100px;
+    z-index: 1000;
+    background-color: rgb(255, 255, 255);
+}
+
+#modal>p{
+    margin-top: 15px;
+}

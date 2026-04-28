@@ -1,14 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stayle.css">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <!--titulo e status-->
+    <h1>Jogo da Memória</h1>
+    <p>Tentativas: <span id="attempts">0</span>
+       | Tempo: <span id="timer">0s</span>
+    </p>
+
+    <!--2. tabuleiro (js vai colocar aqui)-->
+    <div id="gameBoard"></div>
+
+    <div id="modal" style="display: none;">
+        <p>Parabéns! Você venceu!</p>
+    </div>
+
     <script>
         const emojis = ['🎮', '🎲', '🎯', '🎨', '🍷', '🌍'];
+
+        //duplicar emojis
+        const cards = [...emojis, ...emojis]
+            .sort(() => 0.5 - Math.random());
+
+        //criar cada card html
+        const board = document.getElementById('gameBoard')
+
+        cards.forEach((emoji, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.emoji = emoji;
+            card.dataset.index = i;
+            card.addEventListener('click', flipCard);
+            board.appendChild(card);
+        });
+
+        let firstCard = null;
+        let attempts = 0;
+        let locked = false; //impede click duplo
+
+        function flipCard() {
+            if (locked || this.classList.contains('matched')) return;
+
+            this.textContent = this.dataset.emoji;
+            this.classList.add('flipped');
+
+            if (!firstCard) {
+                firstCard = this;
+                return;
+            }
+
+            attempts++;
+            document.getElementById('attempts').textContent = attempts;
+
+            if (firstCard.dataset.emoji === this.dataset.emoji) {
+                firstCard.classList.add('matched');
+                this.classList.add('matched');   
+                firstCard = null;
+                checWin();
+            } else {
+                locked = true;
+                const second = this;
+                setTimeout(() => {
+                    firstCard.textContent = '';
+                    second.textContent = '';
+                    firstCard.classList.remove('flipped');
+                    second.classList.remove('flipped');
+                    firstCard = null;
+                    locked = false;
+                }, 800);
+            }
+        }
+
+        let seconds = 0;
+        let timerINterval = setInterval(() => {
+            seconds++;
+            document.getElementById('timer').textContent = seconds + 's';
+        }, 1000);
+
+        function checWin() {
+            const matched = document
+                .querySelectorAll('.card.matched').length;
+            const total = cards.length;
+
+            if(matched === total){
+                clearInterval(timerINterval);
+                document.getElementById('modal').style.display = 'flex'
+            }
+        }
     </script>
 </body>
+
 </html>

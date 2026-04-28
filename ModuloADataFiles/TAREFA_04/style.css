@@ -1,0 +1,94 @@
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background: white;
+            padding: 36px 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input {
+            padding: 10px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #1a73e8;
+        }
+
+        input.valido {
+            border-color: #2ecc71;
+        }
+
+        input.invalido {
+            border-color: #e74c3c;
+        }
+
+        .erro {
+            font-size: 12px;
+            color: #e74c3c;
+            min-height: 16px;
+        }
+
+        .sucesso {
+            font-size: 12px;
+            color: #2ecc71;
+            min-height: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 4px;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1558b0;
+        }
+
+        button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }

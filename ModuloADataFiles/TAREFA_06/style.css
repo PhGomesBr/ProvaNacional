@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(249, 247, 232);
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#dropZone {
+    background-color: white;
+    border: 2px dashed rgb(210, 210, 210);
+    border-radius: 10px;
+    min-height: 200px;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#previw {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 5px;
+    display: block;
+}
+
+#progressBar { 
+    background: #eee; 
+    height: 30px; 
+    border-radius: 4px; 
+    width: 100%; /* ADICIONE ISSO: essencial para ele aparecer */
+    margin-top: 10px;
+    overflow: hidden; /* Garante que o preenchimento não saia das bordas */
+}
+#progressFill { 
+    background: rgb(0, 187, 0); 
+    height: 100%; /* Ocupa a altura total do pai */
+    width: 0%; 
+    transition: width 0.1s; /* Deixa o movimento suave */
+}

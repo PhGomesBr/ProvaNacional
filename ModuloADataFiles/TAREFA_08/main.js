@@ -89,9 +89,7 @@ const server = http.createServer((req, res) => {
             }
         });
     }
-    if (!res.writableEnded) {
-        return send(res, 404, { erro: 'Rota não encontrada' });
-    }
+
 });
 
 server.listen(3000, () => {

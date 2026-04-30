@@ -1,0 +1,38 @@
+body{
+    height: 100vh;
+    margin: 0;
+}
+#app{
+    display: flex;
+    height: 100vh;
+}
+#sidBar{
+    width: 220px;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+#main{
+    display: flex;
+    flex: 1; /*ocupa O RESTO DO ESPAÇO*/
+    flex-direction: column;
+}
+#viewer{
+    display: flex;
+    flex: 1;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+}
+#thumbnails{
+    height: 120px;
+    background-color: #ddd;
+}
+#upload-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}

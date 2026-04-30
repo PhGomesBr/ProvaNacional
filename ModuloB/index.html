@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Modulo B v1</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidBar">
+            <div class="secao">
+                <h2>Seleção de temas</h2>
+                <button>Tema A</button>
+                <button>Tema B</button>
+                <button>Tema C</button>
+                <button>Tema D</button>
+            </div>
+            <div class="secao">
+                <h2>Modo de reprodução</h2>
+                <button> Manual</button>
+                <button> Automático</button>
+                <button> Aleatório</button>
+            </div>
+        </div>
+        <div id="main">
+            <div id="viewer">
+                <button id="prev" hidden></button>
+                <div id="image-display" hidden></div>
+                <button id="next" hidden></button>
+
+                <div id="upload-area">
+                    <p>Arraste os arquivos nesta área para carregar
+                        ou clique abaixo para abrir o Seletor de Arquivos</p>
+                    <button id="btn-upload">Carregar Imagens</button>
+                    <input type="file" id="input-file" accept=".jpg,.jpeg,.png,.tiff,.gif" multiple hidden>
+                </div>
+            </div>
+            <div id="thumbnails">
+
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>

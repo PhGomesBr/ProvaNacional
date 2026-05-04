@@ -1,32 +1,92 @@
-body{
+body {
     height: 100vh;
     margin: 0;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias no corpo */
 }
-#app{
+
+#app {
     display: flex;
     height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-#sidBar{
-    width: 220px;
+
+#sidBar {
+    width: 300px;
     height: 100%;
     background-color: #f0f0f0;
-}
-#main{
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
-    flex: 1; /*ocupa O RESTO DO ESPAÇO*/
+    flex-direction: column;
+    gap: 40px;
+}
+.secao h2{
+    color: #2b7cff;
+    font-weight: bold;
+}
+#dois button{
+    border: 2px solid rgb(146, 146, 146);
+    background-color: transparent;
+    color: black;
+}
+.secao button{
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    background-color: #4f4f4f;
+}
+.secao{
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 30px;
+    display: flex;
     flex-direction: column;
 }
-#viewer{
+
+#main {
     display: flex;
     flex: 1;
-    background-color: black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Garante que o main não estoure */
+}
+
+#viewer {
+    display: flex;
+    flex: 1; /* Ocupa todo o espaço acima das thumbnails */
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Área onde a imagem vai aparecer */
+#image-display {
+    width: 1000px;
+    height: 550px;
+    border: 5px solid red;
+    box-sizing: border-box;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-#thumbnails{
-    height: 120px;
-    background-color: #ddd;
+
+/* Estilo para a TAG IMG que o JS vai criar dentro da div #image-display */
+#image-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 'contain' para ver a foto toda, 'cover' para preencher */
 }
+
 #upload-area {
     width: 100%;
     height: 100%;
@@ -34,5 +94,71 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    border: 2px dashed #ccc; /* Estética de upload */
+    margin: 20px;
+}
+
+#thumbnails {
+    height: 120px;
+    width: 100%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    box-sizing: border-box;
+    overflow-x: auto; /* Permite scroll se tiver muitas fotos */
+}
+#thumbnails img{
+    cursor: pointer;
+}
+
+#prev, #next {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+#prev:hover, #next:hover {
+    transform: scale(1.1);
+}
+
+.seta {
+    width: 60px; /* Reduzi um pouco para caber melhor em telas menores */
+    height: auto;
+}
+
+/* Ajuste para esconder elementos sem quebrar o flex */
+[hidden] {
+    display: none !important;
+}
+
+.comandBar{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    background-color: #ccc;
+    height: 50px;
+    width: 900px;
+    color: black;
+    margin: 20px;
+}
+
+.comandBar p{
+    margin-left: 40px;
+    margin-right: 40px;
+    font-weight: bold;
+}
+
+#atalhos{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-left: 1200px;
+    border: 2px solid gray;
+    padding: 5px;
+    border-radius: 5px;
+    height: 40px;
 }

@@ -12,14 +12,30 @@
     <div id="app">
         <div id="sidBar">
             <div class="secao">
-                <h2>Seleção de temas</h2>
-                <button>Tema A</button>
-                <button>Tema B</button>
-                <button>Tema C</button>
-                <button>Tema D</button>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <h2>Seleção de temas</h2>
+                    <div id="info">
+                        <p id="teste">
+                            Tema-A: Desliza e sobrepõe. <br>
+                            Tema-B: Entra e sai suavemente. <br>
+                            Tema-C: Movimento e giro aleatórios. <br>
+                            Tema-D: Zoom central com alinhamento.</p>
+                        <img src="MediaFiles/Ícones/interrogacao_preenchida.png" alt="">
+                    </div>
+                </div>
+                <button class="btn-tema" data-tema="A">Tema A</button>
+                <button class="btn-tema" data-tema="B">Tema B</button>
+                <button class="btn-tema" data-tema="C">Tema C</button>
+                <button class="btn-tema" data-tema="D">Tema D</button>
             </div>
             <div class="secao" id="dois">
-                <h2>Modo de reprodução</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <h2>Modo de reprodução</h2>
+                    <div id="info">
+                        <h2 id="teste">Modo de reprodução</h2>
+                        <img src="MediaFiles/Ícones/interrogacao_preenchida.png" alt="">
+                    </div>
+                </div>
                 <button> Manual</button>
                 <button> Automático</button>
                 <button> Aleatório</button>
@@ -30,7 +46,7 @@
             <div id="viewer">
                 <button id="prev" hidden><img src="MediaFiles/Ícones/seta_esquerda_minimalista.png" alt="seta"
                         class="seta"></button>
-                <div id="image-display" hidden></div>
+                <div id="image-display" hidden ></div>
                 <button id="next" hidden><img src="MediaFiles/Ícones/seta_direita_minimalista.png" alt="seta"
                         class="seta"></button>
 
@@ -42,14 +58,14 @@
                 </div>
             </div>
 
-            <div class="comandBar">
+            <div id="comandBar" style="cursor: pointer;">
                 <p>Mudar Tema</p>
                 <p>| </p>
                 <p> Trocar Modo</p>
                 <p>|</p>
-                <p>Reordenar Imagens</p>
+                <p id="mudar">Reordenar Imagens</p>
             </div>
-            <div id="thumbnails">
+            <div id="thumbnails" >
             </div>
         </div>
     </div>

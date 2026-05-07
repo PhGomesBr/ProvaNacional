@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Eventos - Shan Yu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Importando os assets -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- Header Simples -->
+  <nav class="navbar bg-white shadow-sm px-5 py-3">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-4" href="#">SHAN<span style="color: red;">•</span>YU</a>
+      <div>
+        <a class="me-4 text-dark text-decoration-none" href="#">Eventos</a>
+        <a class="me-4 text-dark text-decoration-none" href="#">Pontos Turísticos</a>
+        <a class="me-4 text-dark text-decoration-none" href="#">Minhas avaliações</a>
+        <button class="btn btn-danger">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Título -->
+  <div class="container mt-5">
+    <h2>Eventos</h2>
+    <p class="text-muted">
+      Descubra o que Xangai tem de melhor para oferecer! Nossa lista completa de eventos traz desde exposições de arte e
+      shows vibrantes até festivais culturais e feiras de negócios.
+    </p>
+
+    <!-- Filtros -->
+    <div class="row g-3 align-items-center filter-bar my-4">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Nome" />
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" />
+      </div>
+      <div class="col">
+        <select class="form-select">
+          <option selected>Tipo do Evento</option>
+          <option>Apresentação</option>
+          <option>Exposição</option>
+          <option>Festival</option>
+        </select>
+      </div>
+      <div class="col">
+        <select class="form-select">
+          <option selected>Avaliação</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <button class="col btn btn-secondary-theme">Buscar</button>
+    </div>
+
+    <!-- Listagem Principal -->
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="col-md-4">
+        <div class="card card-item">
+          <img src="https://source.unsplash.com/featured/?cinema" class="image-card w-100" />
+          <div class="card-body">
+            <span class="title-category mb-4 fs-6">Tipo de evento</span>
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="card-title">Nome do evento</h5>
+              <span class="fs-6 fw-medium">dia/mês</span>
+            </div>
+            <p class="card-text text-muted">Descrição descrição descrição descrição descrição descrição descrição
+              descrição descrição descrição descrição descrição descrição...</p>
+            <div class="d-flex justify-content-between text-muted">
+              <span class="fs-6 fw-semibold">18:00 - 20:00</span>
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <svg class="card-star" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 10 L61.8 38.2 L90 38.2 L67.4 57.4 L78.6 85.8 L50 68.6 L21.4 85.8 L32.6 57.4 L10 38.2 L38.2 38.2 L50 10 Z"
+                        fill="#01C2A5"
+                        stroke="01C2A5"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                </svg>
+                <p class="text-rating">
+                  4,5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="text-center mt-5 pb-0">
+    <img src="assets/img/brand-white.png" class="white-brand mb-3" alt="">
+    <div class="mb-4">
+      <a href="#">Procurar eventos</a>
+      <a href="#">Visualizar pontos turísticos</a>
+    </div>
+    <div class="bg-black p-2">
+      <p class="fs-8 mb-0">&copy; 2025 Shan.Yu - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

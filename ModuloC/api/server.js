@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
                     if (senhaHash === user.password) {
                         //atualiza o tokem do usuario
                         await db.query(sqlToken, [token, user.id]);
-                        return send(res, 200, { mensagem: 'Login realizado com sucesso' });
+                        return send(res, 200, { token: token, mensagem: 'Login realizado com sucesso' });
                     } else {
                         return send(res, 401, { mensagem: 'Senha ou email inválidos' });
                     }
@@ -71,7 +71,7 @@ const server = http.createServer(async (req, res) => {
                         await db.query('UPDATE Users SET password = ? WHERE id = ?', [senhaHash, user.id]);
                         //atualiza o tokem do usuario
                         await db.query(sqlToken, [token, user.id]);
-                        return send(res, 200, { mensagem: 'Login realizado com sucesso' });
+                        return send(res, 200, { token: token, mensagem: 'Login realizado com sucesso' } );
                     } else {
                         return send(res, 401, { mensagem: 'Senha ou email inválidos' });
                     }

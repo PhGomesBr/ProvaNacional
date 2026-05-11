@@ -9,17 +9,18 @@ function gerar() {
     //coloca os numero para aparecer na tela
     document.getElementById('captcha').innerText = `${num1} + ${num2}`;
 }
-
 function verificar() {
     //pega a resposta do usuario
     let resposta = Number(document.getElementById('resposta').value);
 
     //ve se bate com o captcha
     if (resposta === soma) {
-        alert('Captcha correto');
+        console.log('Captcha correto');
+         return true;
     } else {
         alert('Captcha errado');
         gerar();
+        return false;
     }
 }
 

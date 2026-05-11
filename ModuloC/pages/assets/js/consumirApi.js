@@ -1,5 +1,6 @@
 const apiUrl = 'http://localhost:3000';
 const loginForm = document.getElementById('loginForm');
+const token = localStorage.getItem('token');
 
 async function getLogin(email, password) {
     try {
@@ -23,7 +24,9 @@ async function getLogin(email, password) {
             return;
         }
 
-        console.log('Login realizado:', data.mensagem);
+        if (token && verificar()) {
+            window.location.href = '/ModuloC/pages/list_all.html';
+        }
 
     } catch (error) {
         console.error("Erro ao buscar dados:", error.message);

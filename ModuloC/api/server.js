@@ -51,12 +51,14 @@ const server = http.createServer(async (req, res) => {
                 const user = result[0];
                 const senhaHash = hashPassword(data.password);
                 const senhaJaCriptografada = user.password.length === 64;
+                //para colocar o token
+                const sqlToken = 'UPDATE Users SET token = ? WHERE id = ?';
                 
                 //se ela ja estiver
-                const sqlToken = 'UPDATE Users SET token = ? WHERE id = ?';
                 if (senhaJaCriptografada) {
                     const token = crypto.randomBytes(32).toString('hex');
                     if (senhaHash === user.password) {
+                        //atualiza o tokem do usuario
                         await db.query(sqlToken, [token, user.id]);
                         return send(res, 200, { mensagem: 'Login realizado com sucesso' });
                     } else {
@@ -67,6 +69,7 @@ const server = http.createServer(async (req, res) => {
                     //se ela ainda n tiver criptografada
                     if (data.password === user.password) {
                         await db.query('UPDATE Users SET password = ? WHERE id = ?', [senhaHash, user.id]);
+                        //atualiza o tokem do usuario
                         await db.query(sqlToken, [token, user.id]);
                         return send(res, 200, { mensagem: 'Login realizado com sucesso' });
                     } else {

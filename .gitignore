@@ -1,6 +1,5 @@
 # Ignora a pasta de dependências
-/node_modules
-
+ModuloC/node_modules/
 # Ignora arquivos de configuração sensíveis (senhas, chaves de banco)
 .env
 

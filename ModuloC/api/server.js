@@ -39,7 +39,6 @@ const server = http.createServer(async (req, res) => {
             try {
 
                 const data = JSON.parse(body);
-console.log("Dados recebidos no servidor:", data); // Adicione isso aqui!
                 if (!data.password || !data.email) {
                     return send(res, 401, { mensagem: 'Os campos não podem ser vazios' });
                 }
@@ -52,18 +51,23 @@ console.log("Dados recebidos no servidor:", data); // Adicione isso aqui!
                 const user = result[0];
                 const senhaHash = hashPassword(data.password);
                 const senhaJaCriptografada = user.password.length === 64;
-
+                
                 //se ela ja estiver
+                const sqlToken = 'UPDATE Users SET token = ? WHERE id = ?';
                 if (senhaJaCriptografada) {
+                    const token = crypto.randomBytes(32).toString('hex');
                     if (senhaHash === user.password) {
+                        await db.query(sqlToken, [token, user.id]);
                         return send(res, 200, { mensagem: 'Login realizado com sucesso' });
                     } else {
                         return send(res, 401, { mensagem: 'Senha ou email inválidos' });
                     }
                 } else {
+                    const token = crypto.randomBytes(32).toString('hex');
                     //se ela ainda n tiver criptografada
                     if (data.password === user.password) {
                         await db.query('UPDATE Users SET password = ? WHERE id = ?', [senhaHash, user.id]);
+                        await db.query(sqlToken, [token, user.id]);
                         return send(res, 200, { mensagem: 'Login realizado com sucesso' });
                     } else {
                         return send(res, 401, { mensagem: 'Senha ou email inválidos' });
@@ -75,7 +79,7 @@ console.log("Dados recebidos no servidor:", data); // Adicione isso aqui!
             }
         })
     } else {
-        return send(res, 404, { mensagem: 'rota n encontrada' })
+        return send(res, 404, { mensagem: 'rota não encontrada' })
     }
 
 })

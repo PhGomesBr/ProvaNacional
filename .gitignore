@@ -1,1 +1,8 @@
-./package.json
+# Ignora a pasta de dependências
+/node_modules
+
+# Ignora arquivos de configuração sensíveis (senhas, chaves de banco)
+.env
+
+# Ignora arquivos de log
+npm-debug.log*

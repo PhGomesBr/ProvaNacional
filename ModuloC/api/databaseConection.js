@@ -1,22 +1,22 @@
 //database essa pagina
-
+//npm i
 const mysql = require('mysql2/promise');
-
 const pool = mysql.createPool({
     host: 'localhost',
+    database:'ShangaiExpedition',
     user: 'root',
     password: '',
-    database: 'ShangaiExpedition',
-    waitForConnections: true
+    waitForConnections : true
 });
 
-pool.getConnection()
-    .then(connection => {
-        console.log('banco conectado com sucesso!! 🚀🚀😘');
-        connection.release(); //libera a conecxão de volta ao pool.
-    })
-    .catch(err => {
-        console.error('Erro ao conectar ao MySql: ', err.message);
-    });
+
+pool.getConnection() 
+.then(connection => {
+    console.log('banco rodando');
+    connection.release() //pra voltar ao pool
+})
+.catch(err=>{
+    console.log('erro ao conectar ao banco de dados'+ err.message);
+});
 
 module.exports = pool;

@@ -1,90 +1,96 @@
-//server este file 
+// server este file
 const http = require('http');
 const db = require('./databaseConection');
 const crypto = require('crypto');
 
-function send(res, code, data) {
-    res.writeHead(code, { 'Content-Type': 'application/json' });
+function send(res, stat, data) {
+    res.writeHead(stat, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(data));
 }
-//função para criazr a criptografia 
+
 function hashPassword(password) {
-    return crypto
-        .createHash('sha256')
-        .update(password)
-        .digest('hex');
+    return crypto.createHash('sha256').update(password).digest('hex')
 }
 
+async function checkAuth(req, res) {
+    const token = req.headers['authorization'];
 
+    if (!token) {
+        send(res, 401, { message: 'não autorizado' });
+        return false;
+    }
+    const [result] = await db.query('SELECT * FROM users WHERE token = ?', [token]);
+
+    if (result.length === 0) {
+        send(res, 401, { message: 'não autorizado' });
+        return false;
+    }
+
+    return result[0];
+}
 const server = http.createServer(async (req, res) => {
 
-    //fazer cors para o front conseguir acessar
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    // 4. Lidar com requisições "preflight" (OPTIONS)
-    if (req.method === 'OPTIONS') {
+    const { method, url } = req;
+    if (method === 'OPTIONS') {
         res.writeHead(200);
         res.end();
         return;
     }
-    const { method, url } = req;
 
     if (method === 'POST' && url === '/login') {
+        //        const user = await checkAuth(req, res);
         let body = '';
 
         req.on('data', (chunk) => body += chunk.toString());
         req.on('end', async () => {
             try {
-
                 const data = JSON.parse(body);
-                if (!data.password || !data.email) {
-                    return send(res, 401, { mensagem: 'Os campos não podem ser vazios' });
-                }
 
-                //ponchetes para pegar so o primeiro valor. com desestruturação
-                const [result] = await db.query('SELECT * FROM Users WHERE email = ?', [data.email]);
+                if (!data.email || !data.password) return send(res, 401, { message: 'os campos não podem estar vazios' });
 
-                if (result.length === 0) return send(res, 404, { mensagem: 'Usuário não encontrado' });
+                const [result] = await db.query('SELECT * FROM users WHERE email = ?', [data.email]);
 
+                if (result.length === 0) return send(res, 404, { message: 'usuario não encontrado' });
                 const user = result[0];
+
+                const senhajaHash = user.password.length === 64;
                 const senhaHash = hashPassword(data.password);
-                const senhaJaCriptografada = user.password.length === 64;
-                //para colocar o token
-                const sqlToken = 'UPDATE Users SET token = ? WHERE id = ?';
-                
-                //se ela ja estiver
-                if (senhaJaCriptografada) {
-                    const token = crypto.randomBytes(32).toString('hex');
-                    if (senhaHash === user.password) {
-                        //atualiza o tokem do usuario
+
+                const sqlToken = 'UPDATE users SET token = ?  WHERE id = ?'
+                const token = crypto.randomBytes(32).toString('hex');
+                if (senhajaHash) {
+                    if (data.email === user.email && senhaHash === user.password) {
                         await db.query(sqlToken, [token, user.id]);
-                        return send(res, 200, { token: token, mensagem: 'Login realizado com sucesso' });
+                        console.log('logado');
+                        return send(res, 200, { message: 'login realizadop com sucesso!!', token });
                     } else {
-                        return send(res, 401, { mensagem: 'Senha ou email inválidos' });
+                        return send(res, 400, { message: 'senha ou email invalidos' })
                     }
                 } else {
-                    const token = crypto.randomBytes(32).toString('hex');
-                    //se ela ainda n tiver criptografada
-                    if (data.password === user.password) {
-                        await db.query('UPDATE Users SET password = ? WHERE id = ?', [senhaHash, user.id]);
-                        //atualiza o tokem do usuario
+                    if (data.email === user.email && data.password === user.password) {
+                        await db.query('UPDATE users SET password = ? WHERE   id = ?', [senhaHash, user.id]);
                         await db.query(sqlToken, [token, user.id]);
-                        return send(res, 200, { token: token, mensagem: 'Login realizado com sucesso' } );
+                        console.log('logado');
+
+                        return send(res, 200, { message: 'login realizadop com sucesso!!', token });
                     } else {
-                        return send(res, 401, { mensagem: 'Senha ou email inválidos' });
+                        return send(res, 400, { message: 'senha ou email invalidos' })
                     }
                 }
-
-            } catch (error) {
-                return send(res, 500, { mensagem: 'internal error' });
+            } catch (err) {
+                return send(res, 500, { message: 'internal error' });
             }
         })
     } else {
-        return send(res, 404, { mensagem: 'rota não encontrada' })
+        return send(res, 404, { message: 'pagina n encontrada' });
     }
+});
 
+server.listen(3000, () => {
+    console.log('http://localhost:3000')
 })
 
-server.listen(3000, () => { console.log('🚀 servidor rodando: http://localhost:3000') });

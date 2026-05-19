@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ModuloC-v2/pages/admin/css/stayle.css">
+    <link rel="stylesheet" href="/ModuloC-v2/pages/admin/events/event.css">
+    <link rel="stylesheet" href="/ModuloC-v2/pages/assets/css/bootstrap.min.css">
+    <title>Admin Events</title>
+</head>
+
+<body>
+    <nav class="navbar bg-white shadow-sm px-5 py-3">
+        <div class="container-fluid">
+            <img src="/ModuloC-v2/pages/assets/img/brand.png" alt="Shanyu">
+            <!-- <div>
+                <a class="me-4 text-dark text-decoration-none" href="#">Eventos</a>
+                <a class="me-4 text-dark text-decoration-none" href="#">Pontos Turísticos</a>
+                <a class="me-4 text-dark text-decoration-none" href="#">Minhas avaliações</a>
+                <button class="btn btn-danger">Sair</button>
+            </div> -->
+        </div>
+    </nav>
+    <main id="conteiner">
+        <Button id="btn-cad" onclick="abrirModal()">Cadastrar Evento</Button>
+        <div id="overlay" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%; height: 100%;
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        ">
+            <button onclick="fecharModal()" style="
+        position: absolute;
+        background: #dc3545 ;;
+        width: 30px;
+        height: 30px;
+        margin-top: 10px;
+        border:  none;
+        margin-left: 650px;
+        top:0;
+              font-size: 20px; cursor: pointer;
+              color: aliceblue;
+              border-radius: 10px;
+              font-weight: bold;
+            ">✕</button>
+            <iframe src="new.html" style="
+              width: 100%;
+              height: 100%;
+              border: none;
+              border-radius: 12px;
+            "></iframe>
+        </div>
+        </div>
+
+        </div>
+        <table id="eventsTable">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name Event</td>
+                    <td>Type Event</td>
+                    <td>Data</td>
+                    <td>Start and end time</td>
+                    <td>Max number of people</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+        </table>
+
+    </main>
+    <script src="/ModuloC-v2/pages/admin/events/events.js"></script>
+</body>
+
+</html>

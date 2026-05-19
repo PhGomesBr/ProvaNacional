@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Evento - WorldSkills</title>
+    <link rel="stylesheet" href="/ModuloC-v2/pages/admin/css/stayle.css">
+    <link rel="stylesheet" href="new.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Editar Evento</h2>
+
+        <form>
+
+            <!-- Nome -->
+            <div class="input-group">
+                <label for="nome">Nome do Evento *</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <!-- Descrição -->
+            <div class="input-group">
+                <label for="descricao">Descrição * (Máx. 200 caracteres)</label>
+                <textarea id="descricao" name="descricao" maxlength="200" required></textarea>
+            </div>
+
+            <!-- Data -->
+            <div class="input-group">
+                <label for="data">Data *</label>
+                <!-- O JavaScript vai travar o 'min' com a data atual -->
+                <input type="date" id="data" name="data" required>
+            </div>
+
+            <!-- Horários -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="hora_inicio">Hora de Início *</label>
+                    <input type="time" id="hora_inicio" name="hora_inicio" required>
+                </div>
+                <div class="input-group">
+                    <label for="hora_termino">Hora de Término *</label>
+                    <input type="time" id="hora_termino" name="hora_termino" required>
+                </div>
+            </div>
+
+            <!-- Imagem -->
+            <div class="input-group">
+                <label for="imagem">Imagem do Evento * (.png, .jpg - Máx: 1MB)</label>
+                <input type="file" id="imagem" name="imagem" accept=".png, .jpg, .jpeg" required>
+            </div>
+
+            <!-- Folheto (PDF) -->
+            <div class="input-group">
+                <label for="folheto">Folheto (PDF) (Opcional)</label>
+                <input type="file" id="folheto" name="folheto" accept=".pdf">
+            </div>
+
+            <!-- Tipo do Evento -->
+            <div class="input-group">
+                <label for="tipo_evento">Tipo do Evento *</label>
+                <select id="tipo_evento" name="tipo_evento" required>
+                    <option value="">Selecione um tipo...</option>
+
+                </select>
+            </div>
+
+            <!-- Coordenadas Geográficas -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="latitude">Latitude * (30.70 a 31.53)</label>
+                    <input type="number" id="latitude" name="latitude" step="0.000001" min="30.70" max="31.53" required>
+                </div>
+                <div class="input-group">
+                    <label for="longitude">Longitude * (120.85 a 122.12)</label>
+                    <input type="number" id="longitude" name="longitude" step="0.000001" min="120.85" max="122.12"
+                        required>
+                </div>
+            </div>
+
+            <!-- Distrito -->
+            <div class="input-group">
+                <label for="distrito">Distrito *</label>
+                <select id="distrito" name="distrito" required>
+                    <option value="">Selecione um distrito...</option>
+
+                </select>
+            </div>
+
+            <!-- Quantidade de Pessoas -->
+            <div class="input-group">
+                <label for="capacidade">Quantidade de Pessoas * (Mín: 100)</label>
+                <input type="number" id="capacidade" name="capacidade" min="100" required>
+            </div>
+
+            <!-- Link de Visualização (Gerado Automaticamente) -->
+            <div class="input-group">
+                <label for="slug_display">Link de Visualização</label>
+                <input type="text" id="slug_display" readonly placeholder="/events/nome-do-evento">
+                <!-- Input escondido para enviar o slug ao back-end -->
+                <input type="hidden" id="link_visualizacao" name="link_visualizacao">
+            </div>
+
+            <button type="submit" class="btn-enviar">Cadastrar Evento</button>
+        </form>
+    </div>
+
+    <script src="new.js"></script>
+</body>
+
+</html>

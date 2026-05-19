@@ -1,0 +1,46 @@
+#conteiner {
+    padding: 40px;
+}
+
+#eventsTable {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#eventsTable thead {
+    background: #dc3545;
+    color: white;
+}
+
+#eventsTable td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+#eventsTable tr:hover {
+    background-color: #f2f2f2;
+}
+
+tr>td>button{
+    margin: 5%;
+    height: 30px;
+    text-align: center;
+    width: 70px;
+    border-radius: 10px;
+    transition: .2s;
+}
+button:hover{
+    transform: scale(1.1);
+}
+
+#btn-cad{
+    margin: 10px;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    background-color: #01c2a5;
+    transition: .2s;
+}
